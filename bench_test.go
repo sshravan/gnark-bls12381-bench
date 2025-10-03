@@ -29,7 +29,7 @@ func BenchmarkMultiExpG1(b *testing.B) {
 	for _, logSample := range logSamples {
 		sampleSize := 1 << logSample
 
-		b.Run(fmt.Sprintf("logsize-%02d", logSample), func(b *testing.B) {
+		b.Run(fmt.Sprintf("ell-%02d", logSample), func(b *testing.B) {
 			var testPoint curve.G1Affine
 
 			b.ResetTimer()
@@ -58,7 +58,7 @@ func BenchmarkMultiExpG2(b *testing.B) {
 	for _, logSample := range logSamples {
 		sampleSize := 1 << logSample
 
-		b.Run(fmt.Sprintf("logsize-%02d", logSample), func(b *testing.B) {
+		b.Run(fmt.Sprintf("ell-%02d", logSample), func(b *testing.B) {
 			var testPoint curve.G2Affine
 
 			b.ResetTimer()
@@ -84,14 +84,14 @@ func BenchmarkFFT(b *testing.B) {
 	for _, logSample := range logSamples {
 		sampleSize := 1 << logSample
 
-		b.Run(fmt.Sprintf("logsize-%02d-basic", logSample), func(b *testing.B) {
+		b.Run(fmt.Sprintf("basic/ell-%02d", logSample), func(b *testing.B) {
 			domain := fft.NewDomain(uint64(sampleSize))
 			b.ResetTimer()
 			for j := 0; j < b.N; j++ {
 				domain.FFT(sampleScalars[:sampleSize], fft.DIT)
 			}
 		})
-		b.Run(fmt.Sprintf("logsize-%02d-coset", logSample), func(b *testing.B) {
+		b.Run(fmt.Sprintf("coset/ell-%02d", logSample), func(b *testing.B) {
 			domain := fft.NewDomain(uint64(sampleSize))
 			b.ResetTimer()
 			for j := 0; j < b.N; j++ {
@@ -125,8 +125,10 @@ func BenchmarkFinalExp(b *testing.B) {
 	var a curve.GT
 	a.MustSetRandom()
 
-	b.ResetTimer()
-	for i := 0; i < b.N; i++ {
-		curve.FinalExponentiation(&a)
-	}
+	b.Run(fmt.Sprintf("ell-%02d", 0), func(b *testing.B) {
+		b.ResetTimer()
+		for j := 0; j < b.N; j++ {
+			curve.FinalExponentiation(&a)
+		}
+	})
 }
