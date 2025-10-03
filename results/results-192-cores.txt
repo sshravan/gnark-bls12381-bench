@@ -1,0 +1,370 @@
+diff --git a/bench_test.go b/bench_test.go
+index 021b625..ae204ad 100644
+--- a/bench_test.go
++++ b/bench_test.go
+@@ -11,9 +11,9 @@ import (
+ 	"github.com/consensys/gnark-crypto/ecc/bls12-381/fr/fft"
+ )
+ 
+-var logSamples = []int{9, 10, 11, 12}
++// var logSamples = []int{9, 10, 11, 12}
+ 
+-// var logSamples = []int{9, 10, 11, 12, 18, 20, 22, 24}
++var logSamples = []int{9, 10, 11, 12, 18, 20, 22, 24}
+ 
+ func BenchmarkMultiExpG1(b *testing.B) {
+ 
+@@ -75,6 +75,8 @@ func BenchmarkMultiExpG2(b *testing.B) {
+ 
+ func BenchmarkFFT(b *testing.B) {
+ 
++//	var logSamples = []int{9, 10, 11, 12, 18, 20}
++
+ 	maxlogSample := slices.Max(logSamples)
+ 	maxSample := 1 << maxlogSample
+ 
+Thu Oct  2 19:46:35 EDT 2025
+goos: linux
+goarch: amd64
+pkg: github.com/sshravan/gnark-bls12381-bench
+cpu: Intel(R) Xeon(R) Platinum 8488C
+BenchmarkMultiExpG1
+BenchmarkMultiExpG1/logsize-09
+BenchmarkMultiExpG1/logsize-09-192         	       9	   1557266 ns/op
+BenchmarkMultiExpG1/logsize-10
+BenchmarkMultiExpG1/logsize-10-192         	       9	   2019562 ns/op
+BenchmarkMultiExpG1/logsize-11
+BenchmarkMultiExpG1/logsize-11-192         	       9	   3123440 ns/op
+BenchmarkMultiExpG1/logsize-12
+BenchmarkMultiExpG1/logsize-12-192         	       9	   4424503 ns/op
+BenchmarkMultiExpG1/logsize-18
+BenchmarkMultiExpG1/logsize-18-192         	       9	  31400879 ns/op
+BenchmarkMultiExpG1/logsize-20
+BenchmarkMultiExpG1/logsize-20-192         	       9	 116921169 ns/op
+BenchmarkMultiExpG1/logsize-22
+BenchmarkMultiExpG1/logsize-22-192         	       9	 376967598 ns/op
+BenchmarkMultiExpG1/logsize-24
+BenchmarkMultiExpG1/logsize-24-192         	       9	1168369210 ns/op
+BenchmarkMultiExpG2
+BenchmarkMultiExpG2/logsize-09
+BenchmarkMultiExpG2/logsize-09-192         	       9	   2318043 ns/op
+BenchmarkMultiExpG2/logsize-10
+BenchmarkMultiExpG2/logsize-10-192         	       9	   2967965 ns/op
+BenchmarkMultiExpG2/logsize-11
+BenchmarkMultiExpG2/logsize-11-192         	       9	   4917355 ns/op
+BenchmarkMultiExpG2/logsize-12
+BenchmarkMultiExpG2/logsize-12-192         	       9	   6928556 ns/op
+BenchmarkMultiExpG2/logsize-18
+BenchmarkMultiExpG2/logsize-18-192         	       9	  69454278 ns/op
+BenchmarkMultiExpG2/logsize-20
+BenchmarkMultiExpG2/logsize-20-192         	       9	 248763539 ns/op
+BenchmarkMultiExpG2/logsize-22
+BenchmarkMultiExpG2/logsize-22-192         	       9	 864737816 ns/op
+BenchmarkMultiExpG2/logsize-24
+BenchmarkMultiExpG2/logsize-24-192         	       9	2623284398 ns/op
+BenchmarkFFT
+BenchmarkFFT/logsize-09-basic
+BenchmarkFFT/logsize-09-basic-192          	       9	    255073 ns/op
+BenchmarkFFT/logsize-09-coset
+BenchmarkFFT/logsize-09-coset-192          	       9	    522276 ns/op
+BenchmarkFFT/logsize-10-basic
+BenchmarkFFT/logsize-10-basic-192          	       9	    453573 ns/op
+BenchmarkFFT/logsize-10-coset
+BenchmarkFFT/logsize-10-coset-192          	       9	    544538 ns/op
+BenchmarkFFT/logsize-11-basic
+BenchmarkFFT/logsize-11-basic-192          	       9	    571196 ns/op
+BenchmarkFFT/logsize-11-coset
+BenchmarkFFT/logsize-11-coset-192          	       9	    781639 ns/op
+BenchmarkFFT/logsize-12-basic
+BenchmarkFFT/logsize-12-basic-192          	       9	    698265 ns/op
+BenchmarkFFT/logsize-12-coset
+BenchmarkFFT/logsize-12-coset-192          	       9	    957421 ns/op
+BenchmarkFFT/logsize-18-basic
+BenchmarkFFT/logsize-18-basic-192          	       9	   3922245 ns/op
+BenchmarkFFT/logsize-18-coset
+BenchmarkFFT/logsize-18-coset-192          	       9	   6041582 ns/op
+BenchmarkFFT/logsize-20-basic
+BenchmarkFFT/logsize-20-basic-192          	       9	  10641075 ns/op
+BenchmarkFFT/logsize-20-coset
+BenchmarkFFT/logsize-20-coset-192          	       9	  15839578 ns/op
+BenchmarkFFT/logsize-22-basic
+BenchmarkFFT/logsize-22-basic-192          	       9	  29862911 ns/op
+BenchmarkFFT/logsize-22-coset
+BenchmarkFFT/logsize-22-coset-192          	       9	  45581566 ns/op
+BenchmarkFFT/logsize-24-basic
+BenchmarkFFT/logsize-24-basic-192          	       9	  89371496 ns/op
+BenchmarkFFT/logsize-24-coset
+BenchmarkFFT/logsize-24-coset-192          	       9	 135907062 ns/op
+BenchmarkMillerLoop
+BenchmarkMillerLoop/size-01
+BenchmarkMillerLoop/size-01-192            	       9	     96240 ns/op
+BenchmarkMillerLoop/size-02
+BenchmarkMillerLoop/size-02-192            	       9	    270837 ns/op
+BenchmarkMillerLoop/size-03
+BenchmarkMillerLoop/size-03-192            	       9	    450451 ns/op
+BenchmarkMillerLoop/size-04
+BenchmarkMillerLoop/size-04-192            	       9	    629072 ns/op
+BenchmarkMillerLoop/size-05
+BenchmarkMillerLoop/size-05-192            	       9	    799472 ns/op
+BenchmarkMillerLoop/size-06
+BenchmarkMillerLoop/size-06-192            	       9	    965876 ns/op
+BenchmarkMillerLoop/size-07
+BenchmarkMillerLoop/size-07-192            	       9	   1135187 ns/op
+BenchmarkMillerLoop/size-08
+BenchmarkMillerLoop/size-08-192            	       9	   1310919 ns/op
+BenchmarkMillerLoop/size-09
+BenchmarkMillerLoop/size-09-192            	       9	   1484578 ns/op
+BenchmarkMillerLoop/size-10
+BenchmarkMillerLoop/size-10-192            	       9	   1648680 ns/op
+BenchmarkMillerLoop/size-11
+BenchmarkMillerLoop/size-11-192            	       9	   1824214 ns/op
+BenchmarkMillerLoop/size-12
+BenchmarkMillerLoop/size-12-192            	       9	   2004873 ns/op
+BenchmarkMillerLoop/size-13
+BenchmarkMillerLoop/size-13-192            	       9	   2199908 ns/op
+BenchmarkMillerLoop/size-14
+BenchmarkMillerLoop/size-14-192            	       9	   2379493 ns/op
+BenchmarkMillerLoop/size-15
+BenchmarkMillerLoop/size-15-192            	       9	   2820717 ns/op
+BenchmarkMillerLoop/size-16
+BenchmarkMillerLoop/size-16-192            	       9	   2716684 ns/op
+BenchmarkMillerLoop/size-17
+BenchmarkMillerLoop/size-17-192            	       9	   2895449 ns/op
+BenchmarkMillerLoop/size-18
+BenchmarkMillerLoop/size-18-192            	       9	   3046807 ns/op
+BenchmarkMillerLoop/size-19
+BenchmarkMillerLoop/size-19-192            	       9	   3164314 ns/op
+BenchmarkMillerLoop/size-20
+BenchmarkMillerLoop/size-20-192            	       9	   3370233 ns/op
+BenchmarkMillerLoop/size-21
+BenchmarkMillerLoop/size-21-192            	       9	   3500530 ns/op
+BenchmarkMillerLoop/size-22
+BenchmarkMillerLoop/size-22-192            	       9	   3675409 ns/op
+BenchmarkMillerLoop/size-23
+BenchmarkMillerLoop/size-23-192            	       9	   3821750 ns/op
+BenchmarkMillerLoop/size-24
+BenchmarkMillerLoop/size-24-192            	       9	   4017321 ns/op
+BenchmarkMillerLoop/size-25
+BenchmarkMillerLoop/size-25-192            	       9	   4224617 ns/op
+BenchmarkMillerLoop/size-26
+BenchmarkMillerLoop/size-26-192            	       9	   4359660 ns/op
+BenchmarkMillerLoop/size-27
+BenchmarkMillerLoop/size-27-192            	       9	   4530427 ns/op
+BenchmarkMillerLoop/size-28
+BenchmarkMillerLoop/size-28-192            	       9	   4700599 ns/op
+BenchmarkMillerLoop/size-29
+BenchmarkMillerLoop/size-29-192            	       9	   4872073 ns/op
+BenchmarkMillerLoop/size-30
+BenchmarkMillerLoop/size-30-192            	       9	   5039967 ns/op
+BenchmarkFinalExp
+BenchmarkFinalExp-192                      	       9	    286809 ns/op
+PASS
+ok  	github.com/sshravan/gnark-bls12381-bench	72.372s
+	Command being timed: "go test -v -bench=. -run=Bench -benchtime=9x"
+	User time (seconds): 8563.76
+	System time (seconds): 304.63
+	Percent of CPU this job got: 12201%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:12.68
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 16328216
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 9
+	Minor (reclaiming a frame) page faults: 17119981
+	Voluntary context switches: 259149
+	Involuntary context switches: 24658
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 7256
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+diff --git a/bench_test.go b/bench_test.go
+index 021b625..ae204ad 100644
+--- a/bench_test.go
++++ b/bench_test.go
+@@ -11,9 +11,9 @@ import (
+ 	"github.com/consensys/gnark-crypto/ecc/bls12-381/fr/fft"
+ )
+ 
+-var logSamples = []int{9, 10, 11, 12}
++// var logSamples = []int{9, 10, 11, 12}
+ 
+-// var logSamples = []int{9, 10, 11, 12, 18, 20, 22, 24}
++var logSamples = []int{9, 10, 11, 12, 18, 20, 22, 24}
+ 
+ func BenchmarkMultiExpG1(b *testing.B) {
+ 
+@@ -75,6 +75,8 @@ func BenchmarkMultiExpG2(b *testing.B) {
+ 
+ func BenchmarkFFT(b *testing.B) {
+ 
++//	var logSamples = []int{9, 10, 11, 12, 18, 20}
++
+ 	maxlogSample := slices.Max(logSamples)
+ 	maxSample := 1 << maxlogSample
+ 
+Thu Oct  2 19:54:56 EDT 2025
+goos: linux
+goarch: amd64
+pkg: github.com/sshravan/gnark-bls12381-bench
+cpu: Intel(R) Xeon(R) Platinum 8488C
+BenchmarkMultiExpG1
+BenchmarkMultiExpG1/logsize-09
+BenchmarkMultiExpG1/logsize-09-192         	     802	   1499524 ns/op
+BenchmarkMultiExpG1/logsize-10
+BenchmarkMultiExpG1/logsize-10-192         	     559	   2112682 ns/op
+BenchmarkMultiExpG1/logsize-11
+BenchmarkMultiExpG1/logsize-11-192         	     367	   3317435 ns/op
+BenchmarkMultiExpG1/logsize-12
+BenchmarkMultiExpG1/logsize-12-192         	     270	   4388197 ns/op
+BenchmarkMultiExpG1/logsize-18
+BenchmarkMultiExpG1/logsize-18-192         	      33	  34134364 ns/op
+BenchmarkMultiExpG1/logsize-20
+BenchmarkMultiExpG1/logsize-20-192         	      12	  99647762 ns/op
+BenchmarkMultiExpG1/logsize-22
+BenchmarkMultiExpG1/logsize-22-192         	       3	 349578928 ns/op
+BenchmarkMultiExpG1/logsize-24
+BenchmarkMultiExpG1/logsize-24-192         	       1	1286426755 ns/op
+BenchmarkMultiExpG2
+BenchmarkMultiExpG2/logsize-09
+BenchmarkMultiExpG2/logsize-09-192         	     396	   2961408 ns/op
+BenchmarkMultiExpG2/logsize-10
+BenchmarkMultiExpG2/logsize-10-192         	     304	   3899686 ns/op
+BenchmarkMultiExpG2/logsize-11
+BenchmarkMultiExpG2/logsize-11-192         	     217	   5481104 ns/op
+BenchmarkMultiExpG2/logsize-12
+BenchmarkMultiExpG2/logsize-12-192         	     163	   7209856 ns/op
+BenchmarkMultiExpG2/logsize-18
+BenchmarkMultiExpG2/logsize-18-192         	      15	  69267754 ns/op
+BenchmarkMultiExpG2/logsize-20
+BenchmarkMultiExpG2/logsize-20-192         	       5	 252589027 ns/op
+BenchmarkMultiExpG2/logsize-22
+BenchmarkMultiExpG2/logsize-22-192         	       2	 866720314 ns/op
+BenchmarkMultiExpG2/logsize-24
+BenchmarkMultiExpG2/logsize-24-192         	       1	2885107683 ns/op
+BenchmarkFFT
+BenchmarkFFT/logsize-09-basic
+BenchmarkFFT/logsize-09-basic-192          	    5967	    238887 ns/op
+BenchmarkFFT/logsize-09-coset
+BenchmarkFFT/logsize-09-coset-192          	    4722	    351404 ns/op
+BenchmarkFFT/logsize-10-basic
+BenchmarkFFT/logsize-10-basic-192          	    3734	    293404 ns/op
+BenchmarkFFT/logsize-10-coset
+BenchmarkFFT/logsize-10-coset-192          	    2371	    506744 ns/op
+BenchmarkFFT/logsize-11-basic
+BenchmarkFFT/logsize-11-basic-192          	    2685	    431056 ns/op
+BenchmarkFFT/logsize-11-coset
+BenchmarkFFT/logsize-11-coset-192          	    1971	    565731 ns/op
+BenchmarkFFT/logsize-12-basic
+BenchmarkFFT/logsize-12-basic-192          	    2044	    541552 ns/op
+BenchmarkFFT/logsize-12-coset
+BenchmarkFFT/logsize-12-coset-192          	    1708	    736634 ns/op
+BenchmarkFFT/logsize-18-basic
+BenchmarkFFT/logsize-18-basic-192          	     320	   3850762 ns/op
+BenchmarkFFT/logsize-18-coset
+BenchmarkFFT/logsize-18-coset-192          	     205	   5785215 ns/op
+BenchmarkFFT/logsize-20-basic
+BenchmarkFFT/logsize-20-basic-192          	     100	  10990360 ns/op
+BenchmarkFFT/logsize-20-coset
+BenchmarkFFT/logsize-20-coset-192          	      74	  15831477 ns/op
+BenchmarkFFT/logsize-22-basic
+BenchmarkFFT/logsize-22-basic-192          	      42	  28078856 ns/op
+BenchmarkFFT/logsize-22-coset
+BenchmarkFFT/logsize-22-coset-192          	      25	  45199118 ns/op
+BenchmarkFFT/logsize-24-basic
+BenchmarkFFT/logsize-24-basic-192          	      12	  86073559 ns/op
+BenchmarkFFT/logsize-24-coset
+BenchmarkFFT/logsize-24-coset-192          	       8	 129823091 ns/op
+BenchmarkMillerLoop
+BenchmarkMillerLoop/size-01
+BenchmarkMillerLoop/size-01-192            	   12727	     93711 ns/op
+BenchmarkMillerLoop/size-02
+BenchmarkMillerLoop/size-02-192            	    4521	    263447 ns/op
+BenchmarkMillerLoop/size-03
+BenchmarkMillerLoop/size-03-192            	    2748	    435134 ns/op
+BenchmarkMillerLoop/size-04
+BenchmarkMillerLoop/size-04-192            	    1972	    606340 ns/op
+BenchmarkMillerLoop/size-05
+BenchmarkMillerLoop/size-05-192            	    1539	    776614 ns/op
+BenchmarkMillerLoop/size-06
+BenchmarkMillerLoop/size-06-192            	    1264	    946672 ns/op
+BenchmarkMillerLoop/size-07
+BenchmarkMillerLoop/size-07-192            	    1075	   1117393 ns/op
+BenchmarkMillerLoop/size-08
+BenchmarkMillerLoop/size-08-192            	     931	   1287488 ns/op
+BenchmarkMillerLoop/size-09
+BenchmarkMillerLoop/size-09-192            	     820	   1457296 ns/op
+BenchmarkMillerLoop/size-10
+BenchmarkMillerLoop/size-10-192            	     735	   1628729 ns/op
+BenchmarkMillerLoop/size-11
+BenchmarkMillerLoop/size-11-192            	     666	   1800103 ns/op
+BenchmarkMillerLoop/size-12
+BenchmarkMillerLoop/size-12-192            	     609	   1968983 ns/op
+BenchmarkMillerLoop/size-13
+BenchmarkMillerLoop/size-13-192            	     560	   2139270 ns/op
+BenchmarkMillerLoop/size-14
+BenchmarkMillerLoop/size-14-192            	     519	   2310176 ns/op
+BenchmarkMillerLoop/size-15
+BenchmarkMillerLoop/size-15-192            	     483	   2480155 ns/op
+BenchmarkMillerLoop/size-16
+BenchmarkMillerLoop/size-16-192            	     452	   2648573 ns/op
+BenchmarkMillerLoop/size-17
+BenchmarkMillerLoop/size-17-192            	     424	   2820454 ns/op
+BenchmarkMillerLoop/size-18
+BenchmarkMillerLoop/size-18-192            	     400	   2990376 ns/op
+BenchmarkMillerLoop/size-19
+BenchmarkMillerLoop/size-19-192            	     379	   3162262 ns/op
+BenchmarkMillerLoop/size-20
+BenchmarkMillerLoop/size-20-192            	     358	   3329236 ns/op
+BenchmarkMillerLoop/size-21
+BenchmarkMillerLoop/size-21-192            	     342	   3500908 ns/op
+BenchmarkMillerLoop/size-22
+BenchmarkMillerLoop/size-22-192            	     326	   3670259 ns/op
+BenchmarkMillerLoop/size-23
+BenchmarkMillerLoop/size-23-192            	     312	   3843412 ns/op
+BenchmarkMillerLoop/size-24
+BenchmarkMillerLoop/size-24-192            	     298	   4007606 ns/op
+BenchmarkMillerLoop/size-25
+BenchmarkMillerLoop/size-25-192            	     286	   4181178 ns/op
+BenchmarkMillerLoop/size-26
+BenchmarkMillerLoop/size-26-192            	     274	   4352310 ns/op
+BenchmarkMillerLoop/size-27
+BenchmarkMillerLoop/size-27-192            	     265	   4521289 ns/op
+BenchmarkMillerLoop/size-28
+BenchmarkMillerLoop/size-28-192            	     255	   4687877 ns/op
+BenchmarkMillerLoop/size-29
+BenchmarkMillerLoop/size-29-192            	     246	   4858506 ns/op
+BenchmarkMillerLoop/size-30
+BenchmarkMillerLoop/size-30-192            	     237	   5031111 ns/op
+BenchmarkFinalExp
+BenchmarkFinalExp-192                      	    4222	    282797 ns/op
+PASS
+ok  	github.com/sshravan/gnark-bls12381-bench	112.570s
+	Command being timed: "go test -v -bench=. -run=Bench"
+	User time (seconds): 2731.29
+	System time (seconds): 116.70
+	Percent of CPU this job got: 2523%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:52.87
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 9131912
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 9
+	Minor (reclaiming a frame) page faults: 11303976
+	Voluntary context switches: 1175584
+	Involuntary context switches: 10207
+	Swaps: 0
+	File system inputs: 32
+	File system outputs: 7256
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
